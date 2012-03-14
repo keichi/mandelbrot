@@ -1,7 +1,7 @@
 #version 120
 
 varying vec4 p;
-const int level = 100;
+uniform int level = 100;
 const float threshold = 2.0;
 
 void main()

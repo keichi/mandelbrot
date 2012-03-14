@@ -12,6 +12,7 @@
 
 static GLuint program;
 static GLuint buffer;
+static int levelValue = 100;
 
 float vertex[] =
 {
@@ -39,6 +40,8 @@ static void render(void)
     glClear(GL_COLOR_BUFFER_BIT);
     
     glUseProgram(program);
+    GLint level = glGetUniformLocation(program, "level");
+    glUniform1i(level, levelValue);
     
     glEnableClientState(GL_VERTEX_ARRAY);
     
@@ -194,6 +197,19 @@ static void printProgramInfoLog(GLuint program)
 	}
 }
 
+void onKey(int key, int x, int y) {
+    switch (key) {
+        case GLUT_KEY_UP:
+            levelValue += 10;
+            break;
+        case GLUT_KEY_DOWN:
+            levelValue -= 10;
+            break;
+        default:
+            break;
+    }
+}
+
 int main (int argc, const char * argv[])
 {
     glutInit(&argc, (char**)argv);
@@ -202,6 +218,8 @@ int main (int argc, const char * argv[])
     glutCreateWindow("Hello OpenGL");
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glutDisplayFunc(&render);
+    glutIdleFunc(glutPostRedisplay);
+    glutSpecialFunc(onKey);
     
     FUTL_LoadShader("test_vertex.glsl", "test_fragment.glsl", &program);
     
