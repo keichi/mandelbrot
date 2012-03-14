@@ -28,8 +28,11 @@ GLuint vtxindex[]={
 
 float start_color_const[] = { 0.0, 0.0, 1.0, 1.0 };
 float end_color_const[] = { 1.0, 1.0, 1.0, 1.0 };
-float center_point_const[] = {0.5, 0.0, 0.0, 0.0};
+float center_point_const[] = {-0.5, 0.0, 0.0, 0.0};
 float zoom_value = 1.0;
+static int is_dragging = 0;
+static int drag_start_x;
+static int drag_start_y;
 
 static int make_resources(void)
 {
@@ -55,6 +58,8 @@ static void render(void)
     glUniform4fv(center, 1, center_point_const);
     GLint zoom = glGetUniformLocation(program, "zoom");
     glUniform1f(zoom, zoom_value);
+    GLint aspect_ratio = glGetUniformLocation(program, "aspect_ratio");
+    glUniform1f(aspect_ratio, 1200.0 / 900.0);
     
     glEnableClientState(GL_VERTEX_ARRAY);
     
@@ -210,22 +215,32 @@ static void printProgramInfoLog(GLuint program)
 	}
 }
 
+void screen_to_real(int x, int y, float* fx, float* fy) {
+    *fx = zoom_value * 2.0 / 1200 * x + center_point_const[0] - zoom_value;
+    *fy = zoom_value * 2.0 / 900 * (900 - y) + center_point_const[1] - zoom_value;
+}
+
 void onKey(int key, int x, int y) {
+    float fx, fy;
+    screen_to_real(x, y, &fx, &fy);
     switch (key) {
         case GLUT_KEY_UP:
-            zoom_value -= 0.1;
+            center_point_const[0] = fx;
+            center_point_const[1] = fy;
+            zoom_value /= 1.1;
             break;
         case GLUT_KEY_DOWN:
-            zoom_value += 0.1;
+            center_point_const[0] = fx;
+            center_point_const[1] = fy; 
+            zoom_value *= 1.1;
+
             break;
         default:
             break;
     }
 }
 
-static int is_dragging = 0;
-static int drag_start_x;
-static int drag_start_y;
+
 
 void onClick(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) {
@@ -241,14 +256,14 @@ void onClick(int button, int state, int x, int y) {
 
 void onMove(int x, int y) {
     if (is_dragging) {
-        float fx = (x - drag_start_x) / 600.0;
-        float fy = (y - drag_start_y) / 450.0;
+        float fx = (x - drag_start_x) / 600.0 * zoom_value;
+        float fy = (y - drag_start_y) / 450.0 * zoom_value;
         
         drag_start_x = x;
         drag_start_y = y;
         
-        center_point_const[0] += fx;
-        center_point_const[1] += -fy;
+        center_point_const[0] += -fx;
+        center_point_const[1] += fy;
     }
 }
 
@@ -265,7 +280,7 @@ int main (int argc, const char * argv[])
     glutCreateWindow("Mandelbrot Renderer");
     glClearColor(1.0, 1.0, 1.0, 1.0);
     
-    glutDisplayFunc(&render);
+    glutDisplayFunc(render);
     glutTimerFunc(20, force_redraw, 0);
     glutSpecialFunc(onKey);
     glutMouseFunc(onClick);
