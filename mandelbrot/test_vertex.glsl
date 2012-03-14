@@ -5,5 +5,6 @@ varying vec4 p;
 void main(void)
 {
 	gl_Position = gl_Vertex;
-    p = gl_Position * vec4(16.0 / 9.0, 1.0, 1.0, 1.0);
+    p = (gl_Vertex - vec4(0.5, 0, 0, 0)) * vec4(4.0 / 3.0, 1.0, 1.0, 1.0) * 1.0;
+
 }

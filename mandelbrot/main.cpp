@@ -12,7 +12,7 @@
 
 static GLuint program;
 static GLuint buffer;
-static int levelValue = 100;
+static int levelValue = 80;
 
 float vertex[] =
 {
@@ -25,6 +25,9 @@ float vertex[] =
 GLuint vtxindex[]={
     0,1,2,3
 };
+
+float start_color_const[] = { 0.0, 0.0, 1.0, 1.0 };
+float end_color_const[] = { 1.0, 1.0, 1.0, 1.0 };
 
 static int make_resources(void)
 {
@@ -42,6 +45,10 @@ static void render(void)
     glUseProgram(program);
     GLint level = glGetUniformLocation(program, "level");
     glUniform1i(level, levelValue);
+    GLint start_color = glGetUniformLocation(program, "start_color");
+    glUniform4fv(start_color, 1, start_color_const);
+    GLint end_color = glGetUniformLocation(program, "end_color");
+    glUniform4fv(end_color, 1, end_color_const);
     
     glEnableClientState(GL_VERTEX_ARRAY);
     
@@ -214,7 +221,7 @@ int main (int argc, const char * argv[])
 {
     glutInit(&argc, (char**)argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    glutInitWindowSize(1600, 900);
+    glutInitWindowSize(1200, 900);
     glutCreateWindow("Hello OpenGL");
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glutDisplayFunc(&render);
