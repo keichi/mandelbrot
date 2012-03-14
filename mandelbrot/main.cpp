@@ -29,6 +29,7 @@ GLuint vtxindex[]={
 float start_color_const[] = { 0.0, 0.0, 1.0, 1.0 };
 float end_color_const[] = { 1.0, 1.0, 1.0, 1.0 };
 float center_point_const[] = {0.5, 0.0, 0.0, 0.0};
+float zoom_value = 1.0;
 
 static int make_resources(void)
 {
@@ -53,7 +54,7 @@ static void render(void)
     GLint center = glGetUniformLocation(program, "center");
     glUniform4fv(center, 1, center_point_const);
     GLint zoom = glGetUniformLocation(program, "zoom");
-    glUniform1f(zoom, 1.0);
+    glUniform1f(zoom, zoom_value);
     
     glEnableClientState(GL_VERTEX_ARRAY);
     
@@ -212,14 +213,48 @@ static void printProgramInfoLog(GLuint program)
 void onKey(int key, int x, int y) {
     switch (key) {
         case GLUT_KEY_UP:
-            levelValue += 10;
+            zoom_value -= 0.1;
             break;
         case GLUT_KEY_DOWN:
-            levelValue -= 10;
+            zoom_value += 0.1;
             break;
         default:
             break;
     }
+}
+
+static int is_dragging = 0;
+static int drag_start_x;
+static int drag_start_y;
+
+void onClick(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON) {
+        if (state == GLUT_DOWN) {
+            is_dragging = 1;
+            drag_start_x = x;
+            drag_start_y = y;
+        } else  if (state == GLUT_UP) {
+            is_dragging = 0;
+        }
+    }
+}
+
+void onMove(int x, int y) {
+    if (is_dragging) {
+        float fx = (x - drag_start_x) / 600.0;
+        float fy = (y - drag_start_y) / 450.0;
+        
+        drag_start_x = x;
+        drag_start_y = y;
+        
+        center_point_const[0] += fx;
+        center_point_const[1] += -fy;
+    }
+}
+
+void force_redraw(int value) {
+    glutPostRedisplay();
+    glutTimerFunc(20, force_redraw, 0);
 }
 
 int main (int argc, const char * argv[])
@@ -227,11 +262,14 @@ int main (int argc, const char * argv[])
     glutInit(&argc, (char**)argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowSize(1200, 900);
-    glutCreateWindow("Hello OpenGL");
+    glutCreateWindow("Mandelbrot Renderer");
     glClearColor(1.0, 1.0, 1.0, 1.0);
+    
     glutDisplayFunc(&render);
-    glutIdleFunc(glutPostRedisplay);
+    glutTimerFunc(20, force_redraw, 0);
     glutSpecialFunc(onKey);
+    glutMouseFunc(onClick);
+    glutMotionFunc(onMove);
     
     FUTL_LoadShader("test_vertex.glsl", "test_fragment.glsl", &program);
     
