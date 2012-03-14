@@ -28,6 +28,7 @@ GLuint vtxindex[]={
 
 float start_color_const[] = { 0.0, 0.0, 1.0, 1.0 };
 float end_color_const[] = { 1.0, 1.0, 1.0, 1.0 };
+float center_point_const[] = {0.5, 0.0, 0.0, 0.0};
 
 static int make_resources(void)
 {
@@ -49,6 +50,10 @@ static void render(void)
     glUniform4fv(start_color, 1, start_color_const);
     GLint end_color = glGetUniformLocation(program, "end_color");
     glUniform4fv(end_color, 1, end_color_const);
+    GLint center = glGetUniformLocation(program, "center");
+    glUniform4fv(center, 1, center_point_const);
+    GLint zoom = glGetUniformLocation(program, "zoom");
+    glUniform1f(zoom, 1.0);
     
     glEnableClientState(GL_VERTEX_ARRAY);
     
