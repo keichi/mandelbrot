@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		CBD521DB1510837C007D3881 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBD521DA1510837C007D3881 /* main.cpp */; };
 		CBD521DD1510837C007D3881 /* mandelbrot.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521DC1510837C007D3881 /* mandelbrot.1 */; };
+		CBD521E6151083BB007D3881 /* test_fragment.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E315108397007D3881 /* test_fragment.glsl */; };
+		CBD521E7151083BB007D3881 /* test_vertex.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E415108397007D3881 /* test_vertex.glsl */; };
+		CBD521E9151083EB007D3881 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD521E8151083EB007D3881 /* OpenGL.framework */; };
+		CBD521EB151083F0007D3881 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD521EA151083F0007D3881 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,12 +26,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		CBD521E5151083AE007D3881 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				CBD521E6151083BB007D3881 /* test_fragment.glsl in CopyFiles */,
+				CBD521E7151083BB007D3881 /* test_vertex.glsl in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CBD521D61510837C007D3881 /* mandelbrot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mandelbrot; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD521DA1510837C007D3881 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CBD521DC1510837C007D3881 /* mandelbrot.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = mandelbrot.1; sourceTree = "<group>"; };
+		CBD521E315108397007D3881 /* test_fragment.glsl */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = test_fragment.glsl; sourceTree = "<group>"; };
+		CBD521E415108397007D3881 /* test_vertex.glsl */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = test_vertex.glsl; sourceTree = "<group>"; };
+		CBD521E8151083EB007D3881 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		CBD521EA151083F0007D3881 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD521EB151083F0007D3881 /* GLUT.framework in Frameworks */,
+				CBD521E9151083EB007D3881 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +65,8 @@
 		CBD521CB1510837C007D3881 = {
 			isa = PBXGroup;
 			children = (
+				CBD521EA151083F0007D3881 /* GLUT.framework */,
+				CBD521E8151083EB007D3881 /* OpenGL.framework */,
 				CBD521D91510837C007D3881 /* mandelbrot */,
 				CBD521D71510837C007D3881 /* Products */,
 			);
@@ -60,6 +83,8 @@
 		CBD521D91510837C007D3881 /* mandelbrot */ = {
 			isa = PBXGroup;
 			children = (
+				CBD521E315108397007D3881 /* test_fragment.glsl */,
+				CBD521E415108397007D3881 /* test_vertex.glsl */,
 				CBD521DA1510837C007D3881 /* main.cpp */,
 				CBD521DC1510837C007D3881 /* mandelbrot.1 */,
 			);
@@ -76,6 +101,7 @@
 				CBD521D21510837C007D3881 /* Sources */,
 				CBD521D31510837C007D3881 /* Frameworks */,
 				CBD521D41510837C007D3881 /* CopyFiles */,
+				CBD521E5151083AE007D3881 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -202,6 +228,7 @@
 				CBD521E21510837C007D3881 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
