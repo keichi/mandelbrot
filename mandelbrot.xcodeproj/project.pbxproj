@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB61E0361513A80900307E51 /* shader_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB61E0351513A80900307E51 /* shader_utils.cpp */; };
 		CBD521DB1510837C007D3881 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBD521DA1510837C007D3881 /* main.cpp */; };
-		CBD521DD1510837C007D3881 /* mandelbrot.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521DC1510837C007D3881 /* mandelbrot.1 */; };
 		CBD521E6151083BB007D3881 /* test_fragment.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E315108397007D3881 /* test_fragment.glsl */; };
 		CBD521E7151083BB007D3881 /* test_vertex.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E415108397007D3881 /* test_vertex.glsl */; };
 		CBD521E9151083EB007D3881 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD521E8151083EB007D3881 /* OpenGL.framework */; };
@@ -16,16 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CBD521D41510837C007D3881 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				CBD521DD1510837C007D3881 /* mandelbrot.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		CBD521E5151083AE007D3881 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -40,9 +30,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CB61E0331513A7FF00307E51 /* shader_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader_utils.h; sourceTree = "<group>"; };
+		CB61E0351513A80900307E51 /* shader_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader_utils.cpp; sourceTree = "<group>"; };
 		CBD521D61510837C007D3881 /* mandelbrot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mandelbrot; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD521DA1510837C007D3881 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		CBD521DC1510837C007D3881 /* mandelbrot.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = mandelbrot.1; sourceTree = "<group>"; };
 		CBD521E315108397007D3881 /* test_fragment.glsl */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = test_fragment.glsl; sourceTree = "<group>"; };
 		CBD521E415108397007D3881 /* test_vertex.glsl */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = test_vertex.glsl; sourceTree = "<group>"; };
 		CBD521E8151083EB007D3881 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -86,7 +77,8 @@
 				CBD521E315108397007D3881 /* test_fragment.glsl */,
 				CBD521E415108397007D3881 /* test_vertex.glsl */,
 				CBD521DA1510837C007D3881 /* main.cpp */,
-				CBD521DC1510837C007D3881 /* mandelbrot.1 */,
+				CB61E0331513A7FF00307E51 /* shader_utils.h */,
+				CB61E0351513A80900307E51 /* shader_utils.cpp */,
 			);
 			path = mandelbrot;
 			sourceTree = "<group>";
@@ -100,7 +92,6 @@
 			buildPhases = (
 				CBD521D21510837C007D3881 /* Sources */,
 				CBD521D31510837C007D3881 /* Frameworks */,
-				CBD521D41510837C007D3881 /* CopyFiles */,
 				CBD521E5151083AE007D3881 /* CopyFiles */,
 			);
 			buildRules = (
@@ -144,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBD521DB1510837C007D3881 /* main.cpp in Sources */,
+				CB61E0361513A80900307E51 /* shader_utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
