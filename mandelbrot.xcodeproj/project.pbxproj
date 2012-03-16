@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		CB61E0361513A80900307E51 /* shader_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB61E0351513A80900307E51 /* shader_utils.cpp */; };
 		CBD521DB1510837C007D3881 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBD521DA1510837C007D3881 /* main.cpp */; };
-		CBD521E6151083BB007D3881 /* test_fragment.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E315108397007D3881 /* test_fragment.glsl */; };
-		CBD521E7151083BB007D3881 /* test_vertex.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E415108397007D3881 /* test_vertex.glsl */; };
+		CBD521E6151083BB007D3881 /* mandelbrot.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E315108397007D3881 /* mandelbrot.frag */; };
+		CBD521E7151083BB007D3881 /* mandelbrot.vert in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBD521E415108397007D3881 /* mandelbrot.vert */; };
 		CBD521E9151083EB007D3881 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD521E8151083EB007D3881 /* OpenGL.framework */; };
 		CBD521EB151083F0007D3881 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD521EA151083F0007D3881 /* GLUT.framework */; };
 /* End PBXBuildFile section */
@@ -22,8 +22,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				CBD521E6151083BB007D3881 /* test_fragment.glsl in CopyFiles */,
-				CBD521E7151083BB007D3881 /* test_vertex.glsl in CopyFiles */,
+				CBD521E6151083BB007D3881 /* mandelbrot.frag in CopyFiles */,
+				CBD521E7151083BB007D3881 /* mandelbrot.vert in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -34,8 +34,8 @@
 		CB61E0351513A80900307E51 /* shader_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader_utils.cpp; sourceTree = "<group>"; };
 		CBD521D61510837C007D3881 /* mandelbrot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mandelbrot; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD521DA1510837C007D3881 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		CBD521E315108397007D3881 /* test_fragment.glsl */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = test_fragment.glsl; sourceTree = "<group>"; };
-		CBD521E415108397007D3881 /* test_vertex.glsl */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = test_vertex.glsl; sourceTree = "<group>"; };
+		CBD521E315108397007D3881 /* mandelbrot.frag */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = mandelbrot.frag; sourceTree = "<group>"; };
+		CBD521E415108397007D3881 /* mandelbrot.vert */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = mandelbrot.vert; sourceTree = "<group>"; };
 		CBD521E8151083EB007D3881 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		CBD521EA151083F0007D3881 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -74,8 +74,8 @@
 		CBD521D91510837C007D3881 /* mandelbrot */ = {
 			isa = PBXGroup;
 			children = (
-				CBD521E315108397007D3881 /* test_fragment.glsl */,
-				CBD521E415108397007D3881 /* test_vertex.glsl */,
+				CBD521E315108397007D3881 /* mandelbrot.frag */,
+				CBD521E415108397007D3881 /* mandelbrot.vert */,
 				CBD521DA1510837C007D3881 /* main.cpp */,
 				CB61E0331513A7FF00307E51 /* shader_utils.h */,
 				CB61E0351513A80900307E51 /* shader_utils.cpp */,

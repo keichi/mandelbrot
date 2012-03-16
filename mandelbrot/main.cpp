@@ -155,7 +155,7 @@ int main (int argc, const char * argv[])
     glutMouseFunc(onClick);
     glutMotionFunc(onMove);
     
-    load_shader("test_vertex.glsl", "test_fragment.glsl", &program);
+    load_shader("mandelbrot.vert", "mandelbrot.frag", &program);
     
     if (!make_resources()) {
         std::cout << "Failed to prepare resources" << std::endl;
