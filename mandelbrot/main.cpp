@@ -12,17 +12,22 @@
 
 #include "shader_utils.h"
 
+// GLSL shader program object
 static GLuint program;
+// Vertex array object
 static GLuint buffer;
 static int levelValue = 80;
 
+// Vertex array
 float vertex[] = {
+    // x, y, z
     -1.0, 1.0, 0.0,
     1.0, 1.0, 0.0,
     -1.0, -1.0, 0.0,
     1.0, -1.0, 0.0,
 };
 
+// Vertex array index
 GLuint vtxindex[] = {
     0,1,2,3
 };
@@ -36,9 +41,9 @@ static int drag_start_x;
 static int drag_start_y;
 
 void screen_to_real(int x, int y, float* fx, float* fy);
-void onKey(int key, int x, int y);
-void onClick(int button, int state, int x, int y);
-void onMove(int x, int y);
+void on_key(int key, int x, int y);
+void on_click(int button, int state, int x, int y);
+void on_move(int x, int y);
 void force_redraw(int value);
 int make_resources(void);
 void render(void);
@@ -87,7 +92,7 @@ void screen_to_real(int x, int y, float* fx, float* fy)
     *fy = exp(zoom_value * log(1.1)) * 2.0 / 900 * (900 - y) + center_point_const[1] - exp(zoom_value * log(1.1));
 }
 
-void onKey(int key, int x, int y)
+void on_key(int key, int x, int y)
 {
     float fx, fy;
     screen_to_real(x, y, &fx, &fy);
@@ -108,7 +113,7 @@ void onKey(int key, int x, int y)
     }
 }
 
-void onClick(int button, int state, int x, int y)
+void on_click(int button, int state, int x, int y)
 {
     if (button == GLUT_LEFT_BUTTON) {
         if (state == GLUT_DOWN) {
@@ -121,7 +126,7 @@ void onClick(int button, int state, int x, int y)
     }
 }
 
-void onMove(int x, int y)
+void on_move(int x, int y)
 {
     if (is_dragging) {
         float fx = (x - drag_start_x) / 600.0 * exp(zoom_value * log(1.1));
@@ -144,17 +149,24 @@ void force_redraw(int value)
 int main (int argc, const char * argv[])
 {
     glutInit(&argc, const_cast<char**>(argv));
+    // enable double buffering
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowSize(1200, 900);
     glutCreateWindow("Mandelbrot Renderer");
     glClearColor(1.0, 1.0, 1.0, 1.0);
     
+    // register display function
     glutDisplayFunc(render);
+    // register timer event handler
     glutTimerFunc(20, force_redraw, 0);
-    glutSpecialFunc(onKey);
-    glutMouseFunc(onClick);
-    glutMotionFunc(onMove);
+    // register special key down event handler
+    glutSpecialFunc(on_key);
+    // register mouse click event handler
+    glutMouseFunc(on_click);
+    // register mouse move event handler
+    glutMotionFunc(on_move);
     
+    // load and compile vertex/fragment shader programs
     load_shader("mandelbrot.vert", "mandelbrot.frag", &program);
     
     if (!make_resources()) {
@@ -162,7 +174,9 @@ int main (int argc, const char * argv[])
         return 1;
     }
     
+    // start main loop
     glutMainLoop();
+    
     return 0;
 }
 
