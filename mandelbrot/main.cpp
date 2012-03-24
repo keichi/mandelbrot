@@ -161,7 +161,7 @@ int main (int argc, const char * argv[])
     glutCreateWindow("Mandelbrot Renderer");
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
-#ifdef _WIN32 || _WIN64
+#if defined _WIN32 || defined _WIN64
 	GLuint error = glewInit();
 	if (error != GLEW_OK) {
 		std::cout << "Failed to initialize GLEW: " << glewGetErrorString(error) << std::endl;
