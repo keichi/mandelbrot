@@ -12,7 +12,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #endif
-#ifdef _WIN32 || _WIN64
+#if defined _WIN32 || defined _WIN64
 #include <gl/glew.h>
 #include <gl/glut.h>
 #endif
