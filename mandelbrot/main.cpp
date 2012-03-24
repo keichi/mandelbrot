@@ -8,7 +8,13 @@
 
 #include <iostream>
 #include <cmath>
+#ifdef __APPLE__
 #include <GLUT/glut.h>
+#endif
+#ifdef _WIN32 || _WIN64
+#include <gl/glew.h>
+#include <gl/glut.h>
+#endif
 
 #include "shader_utils.h"
 
@@ -154,6 +160,14 @@ int main (int argc, const char * argv[])
     glutInitWindowSize(1200, 900);
     glutCreateWindow("Mandelbrot Renderer");
     glClearColor(1.0, 1.0, 1.0, 1.0);
+
+#ifdef _WIN32 || _WIN64
+	GLuint error = glewInit();
+	if (error != GLEW_OK) {
+		std::cout << "Failed to initialize GLEW: " << glewGetErrorString(error) << std::endl;
+		return 1;
+	}
+#endif
     
     // register display function
     glutDisplayFunc(render);

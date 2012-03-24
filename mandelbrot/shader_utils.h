@@ -9,7 +9,13 @@
 #ifndef mandelbrot_shader_utils_h
 #define mandelbrot_shader_utils_h
 
+#ifdef __APPLE__
 #include <GLUT/glut.h>
+#endif
+#ifdef _WIN32 || _WIN64
+#include <gl/glew.h>
+#include <gl/glut.h>
+#endif
 
 #define MAX_SHADER_LOG_SIZE		(1024)
 
