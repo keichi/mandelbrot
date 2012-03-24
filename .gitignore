@@ -30,3 +30,12 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+# hidden/temp files
+.DS_Store
+*.swp
+*~.nib
+
+# Xcode project files except for the project file
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+mandelbrot.xcodeproj/project.xcworkspace/xcuserdata/Keichi.xcuserdatad/UserInterfaceState.xcuserstate
